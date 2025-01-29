@@ -19,7 +19,6 @@ class Asteroid(CircleShape):
         self.position += self.velocity * dt
         
     def split(self):
-        print(f"Splitting asteroid with radius {self.radius}")
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
@@ -29,11 +28,9 @@ class Asteroid(CircleShape):
             vector1 = self.velocity.rotate(angle)
             vector2 = self.velocity.rotate(-angle)
             new_radius = self.radius - ASTEROID_MIN_RADIUS
-            print(f"New radius will be: {new_radius}")
 
             asteroid1 = Asteroid(self.position.x, self.position.y, new_radius)
             asteroid2 = Asteroid(self.position.x, self.position.y, new_radius)
 
             asteroid1.velocity = (vector1 * 1.2)
             asteroid2.velocity = (vector2 * 1.2)
-            print(f"New velocities: {vector1 * 1.2}, {vector2 * 1.2}")
